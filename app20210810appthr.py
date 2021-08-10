@@ -103,7 +103,7 @@ def main():
     # lstm 분석 결과
     #    st.info('2. 딥러닝 예측모델 정확도')
     st.subheader('2. 예측모델의 정확도')
-    st.write('▶ 본 예측모델은 지난 20년 동안의 %s 가격에 대해 78.511%% 의 설명력을 가집니다.' % product_nm)
+    st.write('▶ 본 예측모델은 지난 20년 동안의 %s 가격에 대해 76.2%% 의 설명력을 가집니다.' % product_nm)
 
     # 예측시각화
     if (choose_data == '고구마'):
