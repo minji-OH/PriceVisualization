@@ -1,29 +1,12 @@
 import streamlit as st
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.callbacks import EarlyStopping, ModelCheckpoint
-from keras.layers import LSTM
 import pandas as pd
-import numpy as np
-import os
-import matplotlib.pyplot as plt
 from bokeh.models import DataTable, TableColumn, NumberFormatter, DateFormatter
-from bokeh.io import curdoc
-from bokeh.layouts import column, row
-from bokeh.io import curdoc
-from bokeh.layouts import column, row
-from bokeh.models import ColumnDataSource, DataRange1d, Select
-from bokeh.palettes import Blues4
-import datetime
+from bokeh.models import ColumnDataSource
 from PIL import Image
 from bokeh.models import HoverTool
 from bokeh.plotting import figure
 import warnings
 warnings.filterwarnings('ignore')
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, mean_squared_log_error
 import datetime
 
 
@@ -103,7 +86,7 @@ def main():
     # lstm 분석 결과
     #    st.info('2. 딥러닝 예측모델 정확도')
     st.subheader('2. 예측모델의 정확도')
-    st.write('▶ 본 예측모델은 지난 20년 동안의 %s 가격에 대해 76.2%% 의 설명력을 가집니다.' % product_nm)
+    st.write('▶ 본 예측모델은 지난 20년 동안의 %s 가격에 대해 76.27%% 의 설명력을 가집니다.' % product_nm)
 
     # 예측시각화
     if (choose_data == '고구마'):
@@ -284,6 +267,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
