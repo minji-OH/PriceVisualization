@@ -279,10 +279,10 @@ def main():
             st.text("  - 최고가: 5,757 원")
 
         if (product_nm=='감자'):
-            st.text("  - 가격 일일표준편차: 1095")
-            st.text("  - 최대가격차이: 약 3,008 원")
-            st.text("  - 최저가: 2,749 원")
-            st.text("  - 최고가: 5,757 원")            
+            st.text("  - 가격 일일표준편차: 179")
+            st.text("  - 최대가격차이: 약 529 원")
+            st.text("  - 최저가: 724 원")
+            st.text("  - 최고가: 1,253 원")            
 
         data_rev = data_bokeh[::-1]
         source = ColumnDataSource(data_rev)
