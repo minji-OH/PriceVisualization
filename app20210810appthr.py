@@ -10,17 +10,17 @@ warnings.filterwarnings('ignore')
 import datetime
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache
 def loadDf_sweet_potato():
     data = pd.read_csv('1.sweet_poratoes.csv', parse_dates=["DATE"], index_col="DATE")
     return data
 
-@st.cache(allow_output_mutation=True)
+@st.cache
 def load_Bokeh_sweet_potato():
     data = pd.read_csv('보케_고구마.csv', encoding='utf-8')
     return data
 
-@st.cache(allow_output_mutation=True)
+@st.cache
 def loadDf_apple():
     data = pd.read_csv('2.apple.csv', parse_dates=["DATE"], index_col="DATE")
     return data
@@ -30,19 +30,8 @@ def load_Bokeh_apple():
     data = pd.read_csv('보케_사과.csv', encoding='utf-8')
     return data
 
-@st.cache(allow_output_mutation=True)
-def loadDf_potato():
-    data = pd.read_csv('3.potato.csv', parse_dates=["DATE"], index_col="DATE")
-    return data
-
-@st.cache(allow_output_mutation=True)
-def load_Bokeh_potato():
-    data = pd.read_csv('보케_감자.csv', encoding='utf-8')
-    return data
-
-
 def accept_user_data():
-    user_input=st.text_input('날짜를 입력하세요. (예)입력형태: YYYY-MM-DD, 기간: ~2021-06-29)')
+    user_input=st.text_input('날짜를 입력하세요. (입력형태: YYYY-MM-DD, 기간: ~2021-06-29)')
     return user_input
 
 def main():
@@ -79,13 +68,8 @@ def main():
         product_nm= '사과'
         data=loadDf_apple()
         data_bokeh = load_Bokeh_apple()
-        
-    elif(choose_data=='감자'):
-        product_nm= '감자'
-        data=loadDf_potato()
-        data_bokeh = load_Bokeh_potato()
 
-    if (choose_data!='사과') and (choose_data!='고구마') and (choose_data!='감자'):
+    if (choose_data!='사과') and (choose_data!='고구마'):
         st.subheader('서비스를 준비 중 입니다.')
 
     else:
@@ -143,24 +127,6 @@ def main():
                 tooltips=[('가격', '@y{0,0}' + '원'), ],
                 formatters={'x': 'datetime', }
             ))
-            
-        if (choose_data == '감자'):
-            df_temp = pd.read_csv('감자_예측가격플롯.csv', encoding='utf-8')
-            df_temp['DATE'] = pd.to_datetime(df_temp['DATE'])
-            df_temp = df_temp.sort_values(by=['DATE'], axis=0)
-            #    st.info('3. %s 가격 예측 그래프' % product_nm)
-            st.subheader('3. %s 가격 예측 그래프' % product_nm)
-
-            p = figure(height=300, x_axis_type='datetime')
-            p.line(df_temp['DATE'], df_temp['Gyunglak_PRCE'], legend_label='실제가격', color='#99d594')
-            p.line(df_temp['DATE'], df_temp['예측가격'], legend_label='예측가격', line_width=2, color='#3288bd')
-            p.legend.location = 'top_left'
-            p.legend.click_policy = 'hide'
-
-            p.add_tools(HoverTool(
-                tooltips=[('가격', '@y{0,0}' + '원'), ],
-                formatters={'x': 'datetime', }
-            ))            
 
         st.bokeh_chart(p, use_container_width=True)
 
@@ -171,42 +137,33 @@ def main():
             if (st.checkbox("실제가격과 예측가격을 비교할 날짜 선택")):
                 user_input = accept_user_data()
                 if (choose_data == '고구마'):
-                    if len(user_input)==10:
+                    if user_input == '2021-06-10':
                         st.text("%s일 %s 실제가격: 4,284 원" % (user_input, product_nm))
                         st.text("%s일 %s 예측가격: 4,633.123 원" % (user_input, product_nm))
                         st.text("*정확도: 91.850%")
-                    elif len(user_input)==0:
-                        st.text('')
-                    else: st.text('입력형태를 올바르게 해주세요')
-                        
 
+                    elif user_input == '2021-06-21':
+                        st.text("%s일 %s 실제가격: 4,735.4 원" % (user_input, product_nm))
+                        st.text("%s일 %s 예측가격: 4,577.807 원" % (user_input, product_nm))
+                        st.text("*정확도: 96.671%")
 
                 if (choose_data=='사과'):
-                    if len(user_input)==10:
+                    if user_input == '2021-06-15':
                         st.text("%s일 %s 실제가격: 3,512.38 원" % (user_input, product_nm))
                         st.text("%s일 %s 예측가격: 3,616.75 원" % (user_input, product_nm))
                         st.text("*정확도: 97.028%")
-                    elif len(user_input)==0:
-                        st.text('')
-                    else: st.text('입력형태를 올바르게 해주세요')
-                        
-                if (choose_data=='감자'):
-                    if len(user_input)==10:
-                        st.text("%s일 %s 실제가격: 3,512.38 원" % (user_input, product_nm))
-                        st.text("%s일 %s 예측가격: 3,616.75 원" % (user_input, product_nm))
-                        st.text("*정확도: 97.028%")
-                    elif len(user_input)==0:
-                        st.text('')
-                    else: st.text('입력형태를 올바르게 해주세요')                 
+
+
+                    elif user_input == '2021-06-21':
+                        st.text("%s일 %s 실제가격: 4,666.98 원" % (user_input, product_nm))
+                        st.text("%s일 %s 예측가격: 4,512.45 원" % (user_input, product_nm))
+                        st.text("*정확도: 96.688%")
 
             if (st.checkbox("내일 (2021-06-30) 가격 예측하기")):
                 if (choose_data == '고구마'):
                     st.text('내일 %s의 가격은 "3,965.88 원"으로 예상됩니다.' % (product_nm))
                 if (choose_data=='사과'):
                     st.text('내일 %s의 가격은 "4,060.93 원"으로 예상됩니다.' % (product_nm))
-                    
-                if (choose_data=='감자'):
-                    st.text('내일 %s의 가격은 "4,060.93 원"으로 예상됩니다.' % (product_nm))                    
         except:
             pass
 
@@ -278,11 +235,6 @@ def main():
             st.text("  - 최저가: 2,749 원")
             st.text("  - 최고가: 5,757 원")
 
-        if (product_nm=='감자'):
-            st.text("  - 가격 일일표준편차: 179")
-            st.text("  - 최대가격차이: 약 529 원")
-            st.text("  - 최저가: 724 원")
-            st.text("  - 최고가: 1,253 원")            
 
         data_rev = data_bokeh[::-1]
         source = ColumnDataSource(data_rev)
@@ -315,13 +267,6 @@ def main():
             except:
                 pass
 
-        if product_nm=='감자':
-            try:
-                if (st.checkbox("서울가락도매시장 일일 가격차이 확인하기")):
-                    image = Image.open('가락시장-법인별-가격비교-감자.png')
-                    st.image(image, caption='같은 도매시장에서 거래되는 상품이라도 법인에 따라 가격차이를 보입니다.')
-            except:
-                pass            
 
 if __name__ == "__main__":
     main()
