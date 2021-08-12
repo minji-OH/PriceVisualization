@@ -138,6 +138,7 @@ def main():
                 user_input = accept_user_data()
                 if (choose_data == '고구마'):
                     if len(user_input) == 10:
+                        st.text("※ 현재 서비스는 프로토타입으로서, 입력날짜와 관계없이 2021년 6월 10일의 예측결과를 보여드리는 점 양해부탁드립니다.")
                         st.text("%s일 %s 실제가격: 4,284 원" % (user_input, product_nm))
                         st.text("%s일 %s 예측가격: 4,633.123 원" % (user_input, product_nm))
                         st.text("*정확도: 91.850%")
@@ -148,7 +149,8 @@ def main():
                         st.text("입력형태를 확인해주세요")
 
                 if (choose_data=='사과'):
-                    if user_input == '2021-06-15':
+                    if len(user_input) == 10:
+                        st.text("※ 현재 서비스는 프로토타입으로서, 입력날짜와 관계없이 2021년 6월 15일의 예측결과를 보여드리는 점 양해부탁드립니다.")
                         st.text("%s일 %s 실제가격: 3,512.38 원" % (user_input, product_nm))
                         st.text("%s일 %s 예측가격: 3,616.75 원" % (user_input, product_nm))
                         st.text("*정확도: 97.028%")
