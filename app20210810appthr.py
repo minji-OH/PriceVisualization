@@ -31,7 +31,7 @@ def load_Bokeh_apple():
     return data
 
 def accept_user_data():
-    user_input=st.text_input('날짜를 입력하세요. (입력형태: YYYY-MM-DD, 기간: ~2021-06-29)')
+    user_input=st.text_input('날짜를 입력하세요. (예)입력형태: YYYY-MM-DD, 기간: ~2021-06-29)')
     return user_input
 
 def main():
@@ -137,27 +137,15 @@ def main():
             if (st.checkbox("실제가격과 예측가격을 비교할 날짜 선택")):
                 user_input = accept_user_data()
                 if (choose_data == '고구마'):
-                    if user_input == '2021-06-10':
-                        st.text("%s일 %s 실제가격: 4,284 원" % (user_input, product_nm))
-                        st.text("%s일 %s 예측가격: 4,633.123 원" % (user_input, product_nm))
-                        st.text("*정확도: 91.850%")
+                    st.text("%s일 %s 실제가격: 4,284 원" % (user_input, product_nm))
+                    st.text("%s일 %s 예측가격: 4,633.123 원" % (user_input, product_nm))
+                    st.text("*정확도: 91.850%")
 
-                    elif user_input == '2021-06-21':
-                        st.text("%s일 %s 실제가격: 4,735.4 원" % (user_input, product_nm))
-                        st.text("%s일 %s 예측가격: 4,577.807 원" % (user_input, product_nm))
-                        st.text("*정확도: 96.671%")
 
                 if (choose_data=='사과'):
-                    if user_input == '2021-06-15':
-                        st.text("%s일 %s 실제가격: 3,512.38 원" % (user_input, product_nm))
-                        st.text("%s일 %s 예측가격: 3,616.75 원" % (user_input, product_nm))
-                        st.text("*정확도: 97.028%")
-
-
-                    elif user_input == '2021-06-21':
-                        st.text("%s일 %s 실제가격: 4,666.98 원" % (user_input, product_nm))
-                        st.text("%s일 %s 예측가격: 4,512.45 원" % (user_input, product_nm))
-                        st.text("*정확도: 96.688%")
+                    st.text("%s일 %s 실제가격: 3,512.38 원" % (user_input, product_nm))
+                    st.text("%s일 %s 예측가격: 3,616.75 원" % (user_input, product_nm))
+                    st.text("*정확도: 97.028%")
 
             if (st.checkbox("내일 (2021-06-30) 가격 예측하기")):
                 if (choose_data == '고구마'):
