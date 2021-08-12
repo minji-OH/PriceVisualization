@@ -137,15 +137,15 @@ def main():
             if (st.checkbox("실제가격과 예측가격을 비교할 날짜 선택")):
                 user_input = accept_user_data()
                 if (choose_data == '고구마'):
-                    if user_input == '2021-06-10':
+                    if len(user_input) == 10:
                         st.text("%s일 %s 실제가격: 4,284 원" % (user_input, product_nm))
                         st.text("%s일 %s 예측가격: 4,633.123 원" % (user_input, product_nm))
                         st.text("*정확도: 91.850%")
 
-                    elif user_input == '2021-06-21':
-                        st.text("%s일 %s 실제가격: 4,735.4 원" % (user_input, product_nm))
-                        st.text("%s일 %s 예측가격: 4,577.807 원" % (user_input, product_nm))
-                        st.text("*정확도: 96.671%")
+                    elif len(user_input) == 0:
+                        st.text("")
+                    else:
+                        st.text("입력형태를 확인해주세요")
 
                 if (choose_data=='사과'):
                     if user_input == '2021-06-15':
@@ -154,10 +154,10 @@ def main():
                         st.text("*정확도: 97.028%")
 
 
-                    elif user_input == '2021-06-21':
-                        st.text("%s일 %s 실제가격: 4,666.98 원" % (user_input, product_nm))
-                        st.text("%s일 %s 예측가격: 4,512.45 원" % (user_input, product_nm))
-                        st.text("*정확도: 96.688%")
+                    elif len(user_input) == 0:
+                        st.text("")
+                    else:
+                        st.text("입력형태를 확인해주세요")
 
             if (st.checkbox("내일 (2021-06-30) 가격 예측하기")):
                 if (choose_data == '고구마'):
