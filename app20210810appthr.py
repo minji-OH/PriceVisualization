@@ -141,8 +141,10 @@ def main():
                         st.text("%s일 %s 실제가격: 4,284 원" % (user_input, product_nm))
                         st.text("%s일 %s 예측가격: 4,633.123 원" % (user_input, product_nm))
                         st.text("*정확도: 91.850%")
-                    else:
-                        st.text('입력형태를 올바르게 해주세요')
+                    elif len(user_input)==0:
+                        st.text('')
+                    else: st.text('입력형태를 올바르게 해주세요')
+                        
 
 
                 if (choose_data=='사과'):
@@ -150,6 +152,8 @@ def main():
                         st.text("%s일 %s 실제가격: 3,512.38 원" % (user_input, product_nm))
                         st.text("%s일 %s 예측가격: 3,616.75 원" % (user_input, product_nm))
                         st.text("*정확도: 97.028%")
+                    elif len(user_input)==0:
+                        st.text('')
                     else: st.text('입력형태를 올바르게 해주세요')
 
             if (st.checkbox("내일 (2021-06-30) 가격 예측하기")):
